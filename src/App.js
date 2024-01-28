@@ -24,7 +24,12 @@ let Chessboard;
 
 export function App() {
   const [chessboard, setChessboard] = createSignal();
-  const [clickedSquare, setClickedSquare] = createSignal();
+  const [clickedSquare, setClickedSquare] = createSignal(
+    undefined,
+    // Important, or we won't notice if you click the same
+    // square twice in a row!
+    { equals: false }
+  );
   const [desiredSquare, setDesiredSquare] = createSignal(randSquare(), {
     equals: false,
   });
@@ -49,7 +54,7 @@ export function App() {
 <div class="board">
   <p>Click on the following square:</p>
   <h2>${() => desiredSquare()}</h2>
-  <h3>Record so far: ${() => history.join("")}</h3>
+  <h3>Record so far: ${() => history.join(" ")}</h3>
   <div id="chessboard"></div>
 </div>
 
