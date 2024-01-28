@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "https://esm.sh/solid-js@1.8.12": [
+        "./node_modules/solid-js"
+      ],
+      "https://esm.sh/solid-js@1.8.12/*": [
+        "./node_modules/solid-js/*"
+      ],
+      "https://unpkg.com/@chrisoakman/chessboard2@0.5.0/dist/chessboard2.min.mjs": [
+        "./node_modules/@chrisoakman/chessboard2/dist/chessboard2.min.mjs"
+      ]
+    }
+  }
+}
