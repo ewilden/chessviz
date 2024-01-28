@@ -24,32 +24,23 @@ let Chessboard;
 
 export function App() {
   const [chessboard, setChessboard] = createSignal();
-  const [clickedSquare, setClickedSquare] = createSignal(
-    undefined,
-    // Important, or we won't notice if you click the same
-    // square twice in a row!
-    { equals: false }
-  );
   const [desiredSquare, setDesiredSquare] = createSignal(randSquare(), {
     equals: false,
   });
   const [history, setHistory] = createStore([]);
-  onMount(() => {
-    setChessboard(Chessboard2("chessboard", {
-      onMouseupSquare: (event, domEvent) => {
-        setClickedSquare(event.square);
-      }
-    }));
-  });
-  createEffect(on(clickedSquare, sq => {
-    if (!sq) {
-      return;
-    }
+  const onClickedSquare = sq => {
     setHistory(produce(history => {
       history.push(desiredSquare() === sq ? "✅" : "❌");
     }));
     setDesiredSquare(randSquare());
-  }));
+  };
+  onMount(() => {
+    setChessboard(Chessboard2("chessboard", {
+      onMouseupSquare: (event, domEvent) => {
+        onClickedSquare(event.square);
+      }
+    }));
+  });
   return html`
 <div class="board">
   <p>Click on the following square:</p>
