@@ -1,5 +1,7 @@
 
 .board {
-  width: 40%;
+  width: 80vh;
+  height: 80vh;
   min-width: 400px;
+  min-height: 400px;
 }
